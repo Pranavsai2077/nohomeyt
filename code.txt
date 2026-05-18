@@ -1,0 +1,13 @@
+if (
+    location.pathname === "/" ||
+    location.pathname === "/feed/explore"
+) {
+    location.replace("https://www.youtube.com/feed/subscriptions");
+}
+
+setInterval(() => {
+    document.querySelectorAll('a[href="/"]').forEach(el => {
+        const item = el.closest("ytd-guide-entry-renderer");
+        if (item) item.remove();
+    });
+}, 1000);
