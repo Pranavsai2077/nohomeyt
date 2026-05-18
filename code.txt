@@ -1,10 +1,21 @@
-if (
-    location.pathname === "/" ||
-    location.pathname === "/feed/explore"
-) {
-    location.replace("https://www.youtube.com/feed/subscriptions");
+function redirectToSubscriptions() {
+    if (
+        location.pathname === "/" ||
+        location.pathname === "/feed/explore"
+    ) {
+        location.replace("https://www.youtube.com/feed/subscriptions");
+    }
 }
 
+// Initial check
+redirectToSubscriptions();
+
+// Detect YouTube SPA navigation
+document.addEventListener("yt-navigate-finish", () => {
+    redirectToSubscriptions();
+});
+
+// Remove Home button continuously
 setInterval(() => {
     document.querySelectorAll('a[href="/"]').forEach(el => {
         const item = el.closest("ytd-guide-entry-renderer");
